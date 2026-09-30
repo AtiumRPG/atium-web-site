@@ -126,11 +126,6 @@ export default function App() {
             </span>
           </div>
 
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-500">
-            <a href="#recursos" className="hover:text-[#1E88E5] transition-colors">Recursos</a>
-            <a href="#como-funciona" className="hover:text-[#1E88E5] transition-colors">Como funciona</a>
-          </div>
-
           <a href="#baixar" className="flex items-center gap-2 bg-[#1E88E5] hover:bg-[#1565C0] text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors shadow-sm">
             <IconDownload />
             Baixar grátis
