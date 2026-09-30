@@ -3,7 +3,7 @@
   "language": "pt-BR",
   "description": "Organize suas campanhas de RPG, gerencie personagens e compartilhe aventuras com seu grupo.",
   "robots": {
-    "index": false
+    "index": true
   },
   "accessibility": {
     "addBypassLinks": false,

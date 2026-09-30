@@ -77,6 +77,35 @@ const IconShare = () => (
   </svg>
 );
 
+type Platform = 'windows' | 'linux' | 'mac';
+
+function PlatformIcon({ platform }: { platform: Platform }) {
+  if (platform === 'windows') {
+    return (
+      <svg width="29" height="29" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M2 4.2 10.7 3v8.3H2V4.2Zm9.8-1.4L22 1.3v10H11.8V2.8ZM2 12.5h8.7v8.3L2 19.6v-7.1Zm9.8 0H22v10.2l-10.2-1.5v-8.7Z" />
+      </svg>
+    );
+  }
+
+  if (platform === 'linux') {
+    return (
+      <svg width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2.5" y="4" width="19" height="16" rx="3" />
+        <path d="m7 9 3 3-3 3m6 0h4" />
+      </svg>
+    );
+  }
+
+  return <span aria-hidden="true" className="text-[34px] font-semibold leading-none">⌘</span>;
+}
+
+const downloads: { platform: Platform; name: string; requirement: string; iconClass: string }[] = [
+  { platform: 'windows', name: 'Windows', requirement: 'Windows 10 ou superior', iconClass: 'bg-[#E7F3FF] text-[#1976D2]' },
+  { platform: 'linux', name: 'Linux', requirement: 'Para distribuições Linux', iconClass: 'bg-[#E7F5F1] text-[#14836B]' },
+  { platform: 'mac', name: 'macOS', requirement: 'Para computadores Mac', iconClass: 'bg-[#EEEAFE] text-[#7452C8]' },
+];
+
 // ── App ────────────────────────────────────────────────────────────────────
 
 export default function App() {
@@ -148,7 +177,7 @@ export default function App() {
             <a href="#como-funciona" className="text-gray-600 hover:text-[#1E88E5] px-6 py-4 rounded-2xl font-semibold text-base transition-colors border border-gray-200 hover:border-[#1E88E5] bg-white">
               Ver como funciona →
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 hover:text-[#1E88E5] px-6 py-4 rounded-2xl font-semibold text-base transition-colors border border-gray-200 hover:border-[#1E88E5] bg-white">
+            <a href="https://youtu.be/bLEmkXoMsTI" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 hover:text-[#1E88E5] px-6 py-4 rounded-2xl font-semibold text-base transition-colors border border-gray-200 hover:border-[#1E88E5] bg-white">
               <IconPlay />
               Ver pitch
             </a>
@@ -315,42 +344,67 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section id="baixar" className="py-28 px-6 relative overflow-hidden">
+      {/* ── DOWNLOAD ── */}
+      <section id="baixar" className="relative overflow-hidden px-6 py-28">
         <div className="absolute inset-0 bg-gradient-to-br from-[#1E88E5] to-[#1565C0]" />
         <div className="absolute inset-0 opacity-[0.08]" style={{
           backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
           backgroundSize: '36px 36px',
         }} />
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-white opacity-[0.06] blur-[100px]" />
+        <div className="absolute top-0 right-0 h-[400px] w-[400px] rounded-full bg-white opacity-[0.06] blur-[100px]" />
 
-        <div className="relative max-w-[1100px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Text + button */}
-          <div>
-            <div className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              ✨ Gratuito
+        <div className="relative mx-auto max-w-[1100px]">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+            <div>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-semibold text-white">
+                ✨ Gratuito para começar
+              </div>
+              <h2 className="mb-6 font-black leading-tight text-white" style={{ fontSize: 'clamp(36px, 5vw, 60px)' }}>
+                Pronto para sua próxima aventura?
+              </h2>
+              <p className="max-w-[480px] text-lg leading-relaxed text-blue-100">
+                Escolha seu sistema e comece a organizar mundos, personagens e histórias no Atium RPG Manager.
+              </p>
             </div>
-            <h2 className="font-black text-white leading-tight mb-6"
-              style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(36px, 5vw, 60px)' }}>
-              Pronto para sua próxima aventura?
-            </h2>
-            <p className="text-blue-100 text-lg mb-10 leading-relaxed">
-              Baixe o Atium RPG Manager e comece a organizar suas campanhas com o poder que elas merecem.
-            </p>
-            <a href="#" className="inline-flex items-center gap-3 bg-white text-[#1E88E5] hover:bg-blue-50 px-10 py-5 rounded-2xl font-bold text-lg transition-all shadow-2xl">
-              <IconDownload />
-              Baixar
-            </a>
-            <p className="text-blue-200 text-sm mt-4">Windows 10 ou superior / Linux</p>
+
+            <div className="hidden lg:block">
+              <AppWindow
+                src={imgWelcome}
+                alt="Tela de boas-vindas do Atium RPG Manager"
+                className="shadow-2xl"
+              />
+            </div>
           </div>
 
-          {/* Welcome screen mockup */}
-          <div className="hidden lg:block">
-            <AppWindow
-              src={imgWelcome}
-              alt="Tela de boas-vindas do Atium RPG Manager"
-              className="shadow-2xl"
-            />
+          <div className="mt-16 border-t border-white/25 pt-10">
+            <div className="mb-7">
+              <p className="text-xs font-semibold uppercase tracking-widest text-blue-100">Baixar</p>
+              <h3 className="mt-2 text-3xl font-bold text-white sm:text-4xl">Escolha sua plataforma</h3>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-3">
+              {downloads.map(({ platform, name, requirement, iconClass }) => (
+                <article key={platform} className="flex flex-col rounded-2xl border border-gray-100 bg-white p-6 text-[#0D0D0D] shadow-xl">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${iconClass}`}>
+                      <PlatformIcon platform={platform} />
+                    </div>
+                    <span className="rounded-full bg-[#E3F2FD] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#1E88E5]">Em breve</span>
+                  </div>
+                  <h4 className="mt-6 text-2xl font-bold">{name}</h4>
+                  <p className="mt-1 text-sm text-slate-500">{requirement}</p>
+                  <button
+                    type="button"
+                    disabled
+                    className="mt-7 flex min-h-12 w-full cursor-not-allowed items-center justify-between gap-3 rounded-xl border border-sky-100 bg-[#E8F3FC] px-4 py-3 text-sm font-bold text-[#427DAF]"
+                    aria-label={`Baixar para ${name}, disponível em breve`}
+                  >
+                    Baixar para {name}
+                    <IconDownload />
+                  </button>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
