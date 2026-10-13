@@ -100,6 +100,8 @@ function PlatformIcon({ platform }: { platform: Platform }) {
   return <span aria-hidden="true" className="text-[34px] font-semibold leading-none">⌘</span>;
 }
 
+const RELEASES_URL = 'https://github.com/AtiumRPG/atium-releases/releases/latest';
+
 const downloads: { platform: Platform; name: string; requirement: string; iconClass: string }[] = [
   { platform: 'windows', name: 'Windows', requirement: 'Windows 10 ou superior', iconClass: 'bg-[#E7F3FF] text-[#1976D2]' },
   { platform: 'linux', name: 'Linux', requirement: 'Para distribuições Linux', iconClass: 'bg-[#E7F5F1] text-[#14836B]' },
@@ -384,19 +386,18 @@ export default function App() {
                     <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${iconClass}`}>
                       <PlatformIcon platform={platform} />
                     </div>
-                    <span className="rounded-full bg-[#E3F2FD] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#1E88E5]">Em breve</span>
                   </div>
                   <h4 className="mt-6 text-2xl font-bold">{name}</h4>
                   <p className="mt-1 text-sm text-slate-500">{requirement}</p>
-                  <button
-                    type="button"
-                    disabled
-                    className="mt-7 flex min-h-12 w-full cursor-not-allowed items-center justify-between gap-3 rounded-xl border border-sky-100 bg-[#E8F3FC] px-4 py-3 text-sm font-bold text-[#427DAF]"
-                    aria-label={`Baixar para ${name}, disponível em breve`}
+                  <a
+                    href={RELEASES_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-7 flex min-h-12 w-full items-center justify-between gap-3 rounded-xl bg-[#1E88E5] px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-[#1565C0]"
                   >
                     Baixar para {name}
                     <IconDownload />
-                  </button>
+                  </a>
                 </article>
               ))}
             </div>
