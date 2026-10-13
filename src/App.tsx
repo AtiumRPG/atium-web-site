@@ -77,7 +77,7 @@ const IconShare = () => (
   </svg>
 );
 
-type Platform = 'windows' | 'linux' | 'mac';
+type Platform = 'windows' | 'linux' | 'mac' | 'android';
 
 function PlatformIcon({ platform }: { platform: Platform }) {
   if (platform === 'windows') {
@@ -97,6 +97,15 @@ function PlatformIcon({ platform }: { platform: Platform }) {
     );
   }
 
+  if (platform === 'android') {
+    return (
+      <svg width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="6" y="2" width="12" height="20" rx="2.5" />
+        <path d="M10.5 18.5h3" />
+      </svg>
+    );
+  }
+
   return <span aria-hidden="true" className="text-[34px] font-semibold leading-none">⌘</span>;
 }
 
@@ -107,6 +116,7 @@ const downloads: { platform: Platform; name: string; requirement: string; iconCl
   { platform: 'windows', name: 'Windows', requirement: 'Windows 10 ou superior', iconClass: 'bg-[#E7F3FF] text-[#1976D2]', href: `${RELEASE_URL}/atium-${RELEASE_VERSION}-setup.exe` },
   { platform: 'linux', name: 'Linux', requirement: 'Para distribuições Linux', iconClass: 'bg-[#E7F5F1] text-[#14836B]', href: `${RELEASE_URL}/atium-${RELEASE_VERSION}.AppImage` },
   { platform: 'mac', name: 'macOS', requirement: 'Para computadores Mac', iconClass: 'bg-[#EEEAFE] text-[#7452C8]', href: `${RELEASE_URL}/atium-${RELEASE_VERSION}.dmg` },
+  { platform: 'android', name: 'Android', requirement: 'Para celulares e tablets Android', iconClass: 'bg-[#EDF7E3] text-[#4C8C1F]', href: `${RELEASE_URL}/atium-${RELEASE_VERSION}.apk` },
 ];
 
 // ── App ────────────────────────────────────────────────────────────────────
@@ -380,7 +390,7 @@ export default function App() {
               <h3 className="mt-2 text-3xl font-bold text-white sm:text-4xl">Escolha sua plataforma</h3>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {downloads.map(({ platform, name, requirement, iconClass, href }) => (
                 <article key={platform} className="flex flex-col rounded-2xl border border-gray-100 bg-white p-6 text-[#0D0D0D] shadow-xl">
                   <div className="flex items-start justify-between gap-3">
@@ -416,7 +426,7 @@ export default function App() {
             <span className="font-bold text-white" style={{ fontFamily: "'Outfit', sans-serif" }}>Atium RPG Manager</span>
           </div>
 
-          <p className="text-sm text-center">Feito com ❤️ para mestres e aventureiros · v0.0.3</p>
+          <p className="text-sm text-center">Feito com ❤️ para mestres e aventureiros · v{RELEASE_VERSION}</p>
 
           <div className="flex gap-6 text-sm">
             <a href="#" className="hover:text-white transition-colors">GitHub</a>
