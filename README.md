@@ -39,4 +39,4 @@ The site is published at [atiumrpg.github.io/atium-web-site](https://atiumrpg.gi
 
 ## Links to finish
 
-The Windows, Linux, and macOS download buttons open the [latest release](https://github.com/AtiumRPG/atium-releases/releases/latest) of `AtiumRPG/atium-releases`. That page returns 404 until the first release is published. The reference page uses `#` placeholders for **GitHub** and **Suporte**; replace them with real destinations when they are available. **Ver pitch** opens the [pitch video](https://youtu.be/bLEmkXoMsTI) in a new tab.
+The Windows, Linux, and macOS download buttons link straight to the installers (`.exe`, `.AppImage`, `.dmg`) of a release in [`AtiumRPG/atium-releases`](https://github.com/AtiumRPG/atium-releases/releases). To point them at a new release, change `RELEASE_VERSION` in `src/App.tsx`. The reference page uses `#` placeholders for **GitHub** and **Suporte**; replace them with real destinations when they are available. **Ver pitch** opens the [pitch video](https://youtu.be/bLEmkXoMsTI) in a new tab.

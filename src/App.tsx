@@ -100,12 +100,13 @@ function PlatformIcon({ platform }: { platform: Platform }) {
   return <span aria-hidden="true" className="text-[34px] font-semibold leading-none">⌘</span>;
 }
 
-const RELEASES_URL = 'https://github.com/AtiumRPG/atium-releases/releases/latest';
+const RELEASE_VERSION = '0.1.3';
+const RELEASE_URL = `https://github.com/AtiumRPG/atium-releases/releases/download/v${RELEASE_VERSION}`;
 
-const downloads: { platform: Platform; name: string; requirement: string; iconClass: string }[] = [
-  { platform: 'windows', name: 'Windows', requirement: 'Windows 10 ou superior', iconClass: 'bg-[#E7F3FF] text-[#1976D2]' },
-  { platform: 'linux', name: 'Linux', requirement: 'Para distribuições Linux', iconClass: 'bg-[#E7F5F1] text-[#14836B]' },
-  { platform: 'mac', name: 'macOS', requirement: 'Para computadores Mac', iconClass: 'bg-[#EEEAFE] text-[#7452C8]' },
+const downloads: { platform: Platform; name: string; requirement: string; iconClass: string; href: string }[] = [
+  { platform: 'windows', name: 'Windows', requirement: 'Windows 10 ou superior', iconClass: 'bg-[#E7F3FF] text-[#1976D2]', href: `${RELEASE_URL}/atium-${RELEASE_VERSION}-setup.exe` },
+  { platform: 'linux', name: 'Linux', requirement: 'Para distribuições Linux', iconClass: 'bg-[#E7F5F1] text-[#14836B]', href: `${RELEASE_URL}/atium-${RELEASE_VERSION}.AppImage` },
+  { platform: 'mac', name: 'macOS', requirement: 'Para computadores Mac', iconClass: 'bg-[#EEEAFE] text-[#7452C8]', href: `${RELEASE_URL}/atium-${RELEASE_VERSION}.dmg` },
 ];
 
 // ── App ────────────────────────────────────────────────────────────────────
@@ -380,7 +381,7 @@ export default function App() {
             </div>
 
             <div className="grid gap-6 md:grid-cols-3">
-              {downloads.map(({ platform, name, requirement, iconClass }) => (
+              {downloads.map(({ platform, name, requirement, iconClass, href }) => (
                 <article key={platform} className="flex flex-col rounded-2xl border border-gray-100 bg-white p-6 text-[#0D0D0D] shadow-xl">
                   <div className="flex items-start justify-between gap-3">
                     <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${iconClass}`}>
@@ -390,9 +391,7 @@ export default function App() {
                   <h4 className="mt-6 text-2xl font-bold">{name}</h4>
                   <p className="mt-1 text-sm text-slate-500">{requirement}</p>
                   <a
-                    href={RELEASES_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={href}
                     className="mt-7 flex min-h-12 w-full items-center justify-between gap-3 rounded-xl bg-[#1E88E5] px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-[#1565C0]"
                   >
                     Baixar para {name}
